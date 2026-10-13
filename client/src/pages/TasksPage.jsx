@@ -118,12 +118,17 @@ export const TasksPage = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#263449]/50">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#E5EAF2]">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-[#F8FAFC]">Tasks</h2>
-          <p className="text-sm text-[#94A3B8] mt-1">
+          <div className="flex items-center gap-3">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202B42]">Tasks</h2>
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F0EFFF] text-[#5B5FEF] font-bold border border-[#E4E2FF]">
+              {tasks.length} total
+            </span>
+          </div>
+          <p className="text-sm text-[#68758B] mt-1 font-normal">
             Track, filter, and complete assignments across all projects.
           </p>
         </div>
@@ -135,21 +140,21 @@ export const TasksPage = () => {
             setIsTaskModalOpen(true);
           }}
         >
-          New Task
+          Create Task
         </Button>
       </div>
 
-      {/* Filter and Search Bar */}
-      <div className="bg-[#111B30] border border-[#263449] rounded-2xl p-4 space-y-4">
+      {/* Filter and Search Bar Card */}
+      <div className="bg-white border border-[#E5EAF2] rounded-2xl p-4 space-y-4 shadow-card">
         {/* Search input */}
         <form onSubmit={handleSearchSubmit} className="relative w-full">
-          <Search className="w-4 h-4 text-[#64748B] absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#96A0B2] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by title, description... (Press Enter)"
-            className="w-full bg-[#0F172A] border border-[#263449] rounded-xl pl-10 pr-4 py-2 text-sm text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#8B5CF6]"
+            className="w-full bg-[#F7F9FC] border border-[#E5EAF2] rounded-xl pl-10 pr-4 py-2 text-sm text-[#202B42] placeholder-[#96A0B2] focus:outline-none focus:bg-white focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 transition-all shadow-subtle font-medium"
           />
         </form>
 
@@ -160,7 +165,7 @@ export const TasksPage = () => {
             <select
               value={projectFilter}
               onChange={(e) => setProjectFilter(e.target.value)}
-              className="bg-[#0F172A] border border-[#263449] rounded-lg px-3 py-1.5 text-[#F8FAFC] focus:outline-none"
+              className="bg-[#F7F9FC] border border-[#E5EAF2] rounded-xl px-3 py-1.5 text-[#202B42] font-semibold focus:outline-none focus:border-[#5B5FEF] shadow-subtle cursor-pointer"
             >
               <option value="all">All Projects</option>
               {projects.map((p) => (
@@ -174,7 +179,7 @@ export const TasksPage = () => {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-[#0F172A] border border-[#263449] rounded-lg px-3 py-1.5 text-[#F8FAFC] focus:outline-none"
+              className="bg-[#F7F9FC] border border-[#E5EAF2] rounded-xl px-3 py-1.5 text-[#202B42] font-semibold focus:outline-none focus:border-[#5B5FEF] shadow-subtle cursor-pointer"
             >
               <option value="all">All Statuses</option>
               <option value="todo">To Do</option>
@@ -187,7 +192,7 @@ export const TasksPage = () => {
             <select
               value={priorityFilter}
               onChange={(e) => setPriorityFilter(e.target.value)}
-              className="bg-[#0F172A] border border-[#263449] rounded-lg px-3 py-1.5 text-[#F8FAFC] focus:outline-none"
+              className="bg-[#F7F9FC] border border-[#E5EAF2] rounded-xl px-3 py-1.5 text-[#202B42] font-semibold focus:outline-none focus:border-[#5B5FEF] shadow-subtle cursor-pointer"
             >
               <option value="all">All Priorities</option>
               <option value="low">Low</option>
@@ -197,26 +202,26 @@ export const TasksPage = () => {
             </select>
 
             {/* Overdue checkbox */}
-            <label className="flex items-center gap-1.5 bg-[#0F172A] border border-[#263449] rounded-lg px-3 py-1.5 cursor-pointer text-[#94A3B8] hover:text-[#FB7185]">
+            <label className="flex items-center gap-1.5 bg-[#F7F9FC] border border-[#E5EAF2] rounded-xl px-3 py-1.5 cursor-pointer text-[#68758B] hover:text-[#DC5265] shadow-subtle transition-colors">
               <input
                 type="checkbox"
                 checked={isOverdueOnly}
                 onChange={(e) => setIsOverdueOnly(e.target.checked)}
-                className="rounded border-[#263449] text-[#FB7185] focus:ring-0"
+                className="rounded border-[#E5EAF2] text-[#DC5265] focus:ring-0"
               />
-              <span className="flex items-center gap-1">
-                <AlertTriangle className="w-3 h-3 text-[#FB7185]" /> Overdue Only
+              <span className="flex items-center gap-1 font-semibold">
+                <AlertTriangle className="w-3.5 h-3.5 text-[#DC5265]" /> Overdue Only
               </span>
             </label>
           </div>
 
           {/* Sort */}
           <div className="flex items-center gap-2">
-            <span className="text-[#64748B]">Sort:</span>
+            <span className="text-[#96A0B2] font-medium">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-[#0F172A] border border-[#263449] rounded-lg px-3 py-1.5 text-[#F8FAFC] focus:outline-none"
+              className="bg-[#F7F9FC] border border-[#E5EAF2] rounded-xl px-3 py-1.5 text-[#202B42] font-semibold focus:outline-none focus:border-[#5B5FEF] shadow-subtle cursor-pointer"
             >
               <option value="-createdAt">Newest First</option>
               <option value="createdAt">Oldest First</option>

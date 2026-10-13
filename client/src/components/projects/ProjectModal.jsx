@@ -6,13 +6,13 @@ import { projectService } from '../../services/api';
 import toast from 'react-hot-toast';
 
 const PRESET_COLORS = [
-  '#8B5CF6', // Violet
-  '#22D3EE', // Cyan
-  '#34D399', // Emerald
-  '#FBBF24', // Amber
-  '#FB7185', // Rose
-  '#6366F1', // Indigo
-  '#EC4899', // Pink
+  '#5B5FEF', // Primary Brand Indigo
+  '#3984E8', // Soft Blue
+  '#16A675', // Soft Green
+  '#D99118', // Warm Amber
+  '#DC5265', // Soft Rose
+  '#8B5CF6', // Lavender / Violet
+  '#0EA5E9', // Sky Blue
 ];
 
 export const ProjectModal = ({ isOpen, onClose, onProjectSaved, project = null }) => {
@@ -21,7 +21,7 @@ export const ProjectModal = ({ isOpen, onClose, onProjectSaved, project = null }
     description: '',
     status: 'active',
     category: 'General',
-    color: '#8B5CF6',
+    color: '#5B5FEF',
     startDate: '',
     dueDate: '',
   });
@@ -35,7 +35,7 @@ export const ProjectModal = ({ isOpen, onClose, onProjectSaved, project = null }
         description: project.description || '',
         status: project.status || 'active',
         category: project.category || 'General',
-        color: project.color || '#8B5CF6',
+        color: project.color || '#5B5FEF',
         startDate: project.startDate ? project.startDate.split('T')[0] : '',
         dueDate: project.dueDate ? project.dueDate.split('T')[0] : '',
       });
@@ -45,7 +45,7 @@ export const ProjectModal = ({ isOpen, onClose, onProjectSaved, project = null }
         description: '',
         status: 'active',
         category: 'General',
-        color: '#8B5CF6',
+        color: '#5B5FEF',
         startDate: '',
         dueDate: '',
       });
@@ -107,25 +107,25 @@ export const ProjectModal = ({ isOpen, onClose, onProjectSaved, project = null }
         />
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-[#94A3B8]">Description</label>
+          <label className="text-xs sm:text-sm font-semibold text-[#202B42]">Description</label>
           <textarea
             name="description"
             rows={3}
             value={formData.description}
             onChange={handleChange}
             placeholder="Outline goals, architecture, or scope..."
-            className="w-full rounded-lg bg-[#0F172A] border border-[#263449] text-[#F8FAFC] placeholder-[#64748B] text-sm p-3 focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all"
+            className="w-full rounded-xl bg-white border border-[#E5EAF2] text-[#202B42] placeholder-[#96A0B2] text-sm p-3 focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 transition-all shadow-subtle font-medium"
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-[#94A3B8]">Status</label>
+            <label className="text-xs sm:text-sm font-semibold text-[#202B42]">Status</label>
             <select
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="w-full rounded-lg bg-[#0F172A] border border-[#263449] text-[#F8FAFC] text-sm p-2.5 focus:outline-none focus:border-[#8B5CF6]"
+              className="w-full rounded-xl bg-white border border-[#E5EAF2] text-[#202B42] text-sm p-2.5 focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 shadow-subtle font-medium"
             >
               <option value="planning">Planning</option>
               <option value="active">Active</option>
@@ -145,7 +145,7 @@ export const ProjectModal = ({ isOpen, onClose, onProjectSaved, project = null }
 
         {/* Color Palette Selector */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-[#94A3B8]">Theme Accent</label>
+          <label className="text-xs sm:text-sm font-semibold text-[#202B42]">Theme Accent</label>
           <div className="flex items-center gap-2 pt-1">
             {PRESET_COLORS.map((c) => (
               <button
@@ -153,8 +153,8 @@ export const ProjectModal = ({ isOpen, onClose, onProjectSaved, project = null }
                 type="button"
                 onClick={() => setFormData((prev) => ({ ...prev, color: c }))}
                 style={{ backgroundColor: c }}
-                className={`w-7 h-7 rounded-full transition-transform ${
-                  formData.color === c ? 'ring-2 ring-white ring-offset-2 ring-offset-[#111B30] scale-110' : 'opacity-80 hover:opacity-100'
+                className={`w-7 h-7 rounded-full transition-all shadow-sm ${
+                  formData.color === c ? 'ring-2 ring-offset-2 ring-[#5B5FEF] scale-110' : 'opacity-85 hover:opacity-100 hover:scale-105'
                 }`}
               />
             ))}
@@ -179,7 +179,7 @@ export const ProjectModal = ({ isOpen, onClose, onProjectSaved, project = null }
           />
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-[#263449]">
+        <div className="flex justify-end gap-3 pt-4 border-t border-[#E5EAF2]">
           <Button variant="outline" onClick={onClose} disabled={isSubmitting}>
             Cancel
           </Button>

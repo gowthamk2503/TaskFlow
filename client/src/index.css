@@ -3,64 +3,74 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #0B1020;
-  --bg-sidebar: #0F172A;
-  --bg-card: #111B30;
-  --bg-surface: #17233B;
-  --accent-violet: #8B5CF6;
-  --accent-cyan: #22D3EE;
-  --text-primary: #F8FAFC;
-  --text-muted: #94A3B8;
-  --border-color: #263449;
+  --font-family: "Plus Jakarta Sans", Inter, system-ui, -apple-system, sans-serif;
+  --color-background: #F7F9FC;
+  --color-surface: #FFFFFF;
+  --color-primary: #5B5FEF;
+  --color-primary-hover: #484BD1;
+  --color-text: #202B42;
+  --color-text-secondary: #68758B;
+  --color-text-muted: #96A0B2;
+  --color-border: #E5EAF2;
+  --color-lavender: #F0EFFF;
+  --color-blue: #EAF2FF;
+  --color-green: #E5F7EE;
+  --color-orange: #FFF1E5;
+  --color-error: #DC5265;
+  --radius-card: 14px;
+  --radius-control: 9px;
+  --navbar-height: 72px;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  font-family: var(--font-family);
+  background-color: var(--color-background);
+  color: var(--color-text);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
+/* Custom Clean Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B1020;
+  background: #F7F9FC;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #263449;
+  background: #D1D8E2;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b4e6b;
+  background: #96A0B2;
 }
 
-/* Glassmorphism helpers */
-.glass-panel {
-  background: rgba(17, 27, 48, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(38, 52, 73, 0.8);
-}
-
-.aurora-gradient-text {
-  background: linear-gradient(135deg, #8B5CF6 0%, #22D3EE 100%);
+/* Brand Utility Helpers */
+.brand-gradient-text {
+  background: linear-gradient(135deg, #5B5FEF 0%, #484BD1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.aurora-button-gradient {
-  background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+.brand-button-gradient {
+  background: linear-gradient(135deg, #5B5FEF 0%, #484BD1 100%);
   transition: all 0.2s ease-in-out;
 }
 
-.aurora-button-gradient:hover {
-  opacity: 0.95;
-  box-shadow: 0 0 20px -3px rgba(139, 92, 246, 0.5);
+.brand-button-gradient:hover {
+  background: linear-gradient(135deg, #484BD1 0%, #383AB8 100%);
+  box-shadow: 0 4px 14px rgba(91, 95, 239, 0.25);
+}
+
+/* Light Card Panels */
+.light-panel {
+  background: #FFFFFF;
+  border: 1px solid #E5EAF2;
+  box-shadow: 0 1px 3px rgba(32, 43, 66, 0.04), 0 4px 12px rgba(32, 43, 66, 0.03);
 }

@@ -185,29 +185,29 @@ export const TaskModal = ({
         />
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-medium text-[#94A3B8]">Description</label>
+          <label className="text-xs sm:text-sm font-semibold text-[#202B42]">Description</label>
           <textarea
             name="description"
             rows={3}
             value={formData.description}
             onChange={handleChange}
             placeholder="Add detailed acceptance criteria, context, or notes..."
-            className="w-full rounded-lg bg-[#0F172A] border border-[#263449] text-[#F8FAFC] placeholder-[#64748B] text-sm p-3 focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all"
+            className="w-full rounded-xl bg-white border border-[#E5EAF2] text-[#202B42] placeholder-[#96A0B2] text-sm p-3 focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 transition-all shadow-subtle font-medium leading-relaxed"
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-[#94A3B8]">
-              Project <span className="text-[#FB7185]">*</span>
+            <label className="text-xs sm:text-sm font-semibold text-[#202B42]">
+              Project <span className="text-[#DC5265]">*</span>
             </label>
             <select
               name="project"
               value={formData.project}
               onChange={handleChange}
-              className={`w-full rounded-lg bg-[#0F172A] border ${
-                errors.project ? 'border-[#FB7185]' : 'border-[#263449]'
-              } text-[#F8FAFC] text-sm p-2.5 focus:outline-none focus:border-[#8B5CF6]`}
+              className={`w-full rounded-xl bg-white border ${
+                errors.project ? 'border-[#DC5265]' : 'border-[#E5EAF2]'
+              } text-[#202B42] text-sm p-2.5 focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 shadow-subtle font-medium`}
             >
               <option value="" disabled>Select Project</option>
               {projects.map((p) => (
@@ -216,16 +216,16 @@ export const TaskModal = ({
                 </option>
               ))}
             </select>
-            {errors.project && <p className="text-xs text-[#FB7185]">{errors.project}</p>}
+            {errors.project && <p className="text-xs text-[#DC5265] font-semibold">{errors.project}</p>}
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-[#94A3B8]">Status</label>
+            <label className="text-xs sm:text-sm font-semibold text-[#202B42]">Status</label>
             <select
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="w-full rounded-lg bg-[#0F172A] border border-[#263449] text-[#F8FAFC] text-sm p-2.5 focus:outline-none focus:border-[#8B5CF6]"
+              className="w-full rounded-xl bg-white border border-[#E5EAF2] text-[#202B42] text-sm p-2.5 focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 shadow-subtle font-medium"
             >
               <option value="todo">To Do</option>
               <option value="in_progress">In Progress</option>
@@ -237,12 +237,12 @@ export const TaskModal = ({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-[#94A3B8]">Priority</label>
+            <label className="text-xs sm:text-sm font-semibold text-[#202B42]">Priority</label>
             <select
               name="priority"
               value={formData.priority}
               onChange={handleChange}
-              className="w-full rounded-lg bg-[#0F172A] border border-[#263449] text-[#F8FAFC] text-sm p-2.5 focus:outline-none focus:border-[#8B5CF6]"
+              className="w-full rounded-xl bg-white border border-[#E5EAF2] text-[#202B42] text-sm p-2.5 focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 shadow-subtle font-medium"
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
@@ -268,7 +268,7 @@ export const TaskModal = ({
           placeholder="frontend, api, bugfix, security"
         />
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-[#263449]">
+        <div className="flex justify-end gap-3 pt-4 border-t border-[#E5EAF2]">
           <Button variant="outline" onClick={onClose} disabled={isSubmitting}>
             Cancel
           </Button>
@@ -278,35 +278,35 @@ export const TaskModal = ({
         </div>
       </form>
 
-      {/* Task Comments Section (Available when viewing existing task) */}
+      {/* Task Comments Section */}
       {task?._id && (
-        <div className="mt-6 pt-6 border-t border-[#263449]">
+        <div className="mt-6 pt-6 border-t border-[#E5EAF2]">
           <div className="flex items-center gap-2 mb-4">
-            <MessageSquare className="w-4 h-4 text-[#8B5CF6]" />
-            <h4 className="text-sm font-semibold text-[#F8FAFC]">Discussion & Notes ({comments.length})</h4>
+            <MessageSquare className="w-4 h-4 text-[#5B5FEF]" />
+            <h4 className="text-sm font-bold text-[#202B42]">Discussion & Notes ({comments.length})</h4>
           </div>
 
           {/* Comments list */}
           <div className="space-y-3 max-h-48 overflow-y-auto mb-4 pr-1">
             {comments.length === 0 ? (
-              <p className="text-xs text-[#64748B] italic">No comments yet. Start the conversation!</p>
+              <p className="text-xs text-[#68758B] italic">No comments yet. Start the conversation!</p>
             ) : (
               comments.map((c) => (
                 <div
                   key={c._id}
-                  className="bg-[#0F172A] border border-[#263449] rounded-xl p-3 text-xs"
+                  className="bg-[#F7F9FC] border border-[#E5EAF2] rounded-xl p-3 text-xs shadow-subtle"
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-[#8B5CF6]">
+                    <span className="font-bold text-[#5B5FEF]">
                       {c.user?.name || 'Collaborator'}
                     </span>
-                    <div className="flex items-center gap-2 text-[10px] text-[#64748B]">
+                    <div className="flex items-center gap-2 text-[10px] text-[#96A0B2]">
                       <span>{new Date(c.createdAt).toLocaleDateString()}</span>
                       {(c.user?._id === user?._id || c.user === user?._id) && (
                         <button
                           type="button"
                           onClick={() => handleDeleteComment(c._id)}
-                          className="text-[#FB7185] hover:opacity-80 p-0.5"
+                          className="text-[#DC5265] hover:opacity-80 p-0.5"
                           title="Delete comment"
                         >
                           <Trash2 className="w-3 h-3" />
@@ -314,7 +314,7 @@ export const TaskModal = ({
                       )}
                     </div>
                   </div>
-                  <p className="text-[#F8FAFC] whitespace-pre-wrap">{c.text}</p>
+                  <p className="text-[#202B42] whitespace-pre-wrap font-medium">{c.text}</p>
                 </div>
               ))
             )}
@@ -327,7 +327,7 @@ export const TaskModal = ({
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Write a message or update..."
-              className="flex-1 bg-[#0F172A] border border-[#263449] rounded-lg px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]"
+              className="flex-1 bg-white border border-[#E5EAF2] rounded-xl px-3.5 py-2 text-xs text-[#202B42] placeholder-[#96A0B2] focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 shadow-subtle font-medium"
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   e.preventDefault();

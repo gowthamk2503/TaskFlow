@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   Clock,
   Layers,
-  Sparkles,
 } from 'lucide-react';
 import { Button } from '../components/common/Button';
 import { TaskCard } from '../components/tasks/TaskCard';
@@ -17,10 +16,10 @@ import { taskService, projectService } from '../services/api';
 import toast from 'react-hot-toast';
 
 const COLUMNS = [
-  { id: 'todo', title: 'To Do', accent: '#94A3B8', bg: 'bg-slate-500/10' },
-  { id: 'in_progress', title: 'In Progress', accent: '#22D3EE', bg: 'bg-cyan-500/10' },
-  { id: 'in_review', title: 'In Review', accent: '#8B5CF6', bg: 'bg-purple-500/10' },
-  { id: 'completed', title: 'Completed', accent: '#34D399', bg: 'bg-emerald-500/10' },
+  { id: 'todo', title: 'To Do', accent: '#96A0B2', bg: 'bg-slate-100', text: 'text-[#68758B]', border: 'border-slate-200' },
+  { id: 'in_progress', title: 'In Progress', accent: '#3984E8', bg: 'bg-[#EAF2FF]', text: 'text-[#3984E8]', border: 'border-[#BFDBFE]' },
+  { id: 'in_review', title: 'In Review', accent: '#5B5FEF', bg: 'bg-[#F0EFFF]', text: 'text-[#5B5FEF]', border: 'border-[#E4E2FF]' },
+  { id: 'completed', title: 'Completed', accent: '#16A675', bg: 'bg-[#E5F7EE]', text: 'text-[#16A675]', border: 'border-[#B8F0D3]' },
 ];
 
 export const KanbanBoardPage = () => {
@@ -110,7 +109,7 @@ export const KanbanBoardPage = () => {
     }
   };
 
-  // Fallback status updater (for dropdown or click)
+  // Fallback status updater
   const handleStatusChange = async (taskId, newStatus) => {
     const task = tasks.find((t) => t._id === taskId);
     if (!task || task.status === newStatus) return;
@@ -146,28 +145,28 @@ export const KanbanBoardPage = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans">
       {/* Header and Project Selector */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#263449]/50">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#E5EAF2]">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-[#F8FAFC]">Kanban Board</h2>
-          <p className="text-sm text-[#94A3B8] mt-1">
-            Drag and drop tasks between lanes to transition delivery states.
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202B42]">Kanban Board</h2>
+          <p className="text-sm text-[#68758B] mt-1 font-normal">
+            Drag and drop tasks between workflow columns to update delivery status.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           {/* Project Filter */}
-          <div className="flex items-center gap-2 bg-[#111B30] border border-[#263449] rounded-xl px-3 py-1.5 text-xs text-[#94A3B8]">
-            <Filter className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-2 bg-white border border-[#E5EAF2] rounded-xl px-3 py-1.5 text-xs text-[#68758B] shadow-subtle">
+            <Filter className="w-3.5 h-3.5 text-[#96A0B2]" />
             <select
               value={selectedProject}
               onChange={(e) => setSelectedProject(e.target.value)}
-              className="bg-transparent text-[#F8FAFC] focus:outline-none cursor-pointer"
+              className="bg-transparent text-[#202B42] font-semibold focus:outline-none cursor-pointer"
             >
-              <option value="all" className="bg-[#111B30]">All Projects</option>
+              <option value="all">All Projects</option>
               {projects.map((p) => (
-                <option key={p._id} value={p._id} className="bg-[#111B30]">
+                <option key={p._id} value={p._id}>
                   {p.name}
                 </option>
               ))}
@@ -184,7 +183,7 @@ export const KanbanBoardPage = () => {
               setIsTaskModalOpen(true);
             }}
           >
-            New Task
+            Create Task
           </Button>
         </div>
       </div>
@@ -195,7 +194,7 @@ export const KanbanBoardPage = () => {
           <LoadingSkeleton count={4} type="card" />
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pb-6 overflow-x-auto min-w-[700px] lg:min-w-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pb-6 overflow-x-auto min-w-[720px] lg:min-w-0">
           {COLUMNS.map((col) => {
             const columnTasks = tasks.filter((t) => t.status === col.id);
             const isTargeted = activeDropZone === col.id;
@@ -206,21 +205,21 @@ export const KanbanBoardPage = () => {
                 onDragOver={(e) => handleDragOver(e, col.id)}
                 onDragLeave={(e) => handleDragLeave(e, col.id)}
                 onDrop={(e) => handleDrop(e, col.id)}
-                className={`bg-[#0F172A] border rounded-2xl p-4 flex flex-col transition-all duration-200 min-h-[550px] ${
+                className={`bg-[#F7F9FC] border rounded-2xl p-3.5 flex flex-col transition-all duration-200 min-h-[580px] shadow-subtle ${
                   isTargeted
-                    ? 'border-[#8B5CF6] ring-2 ring-[#8B5CF6]/20 bg-[#17233B]/80'
-                    : 'border-[#263449]'
+                    ? 'border-[#5B5FEF] ring-2 ring-[#5B5FEF]/20 bg-[#F0EFFF]/40'
+                    : 'border-[#E5EAF2]'
                 }`}
               >
                 {/* Column Header */}
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#263449]/70">
+                <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#E5EAF2]">
                   <div className="flex items-center gap-2">
                     <span
                       className="w-2.5 h-2.5 rounded-full"
                       style={{ backgroundColor: col.accent }}
                     />
-                    <h3 className="text-sm font-semibold text-[#F8FAFC]">{col.title}</h3>
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-[#17233B] text-[#94A3B8] font-bold">
+                    <h3 className="text-sm font-bold text-[#202B42]">{col.title}</h3>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-bold border ${col.bg} ${col.text} ${col.border}`}>
                       {columnTasks.length}
                     </span>
                   </div>
@@ -231,7 +230,7 @@ export const KanbanBoardPage = () => {
                       setTargetColumnForNewTask(col.id);
                       setIsTaskModalOpen(true);
                     }}
-                    className="p-1 rounded-lg text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#17233B]"
+                    className="p-1 rounded-lg text-[#68758B] hover:text-[#202B42] hover:bg-white transition-colors"
                     title={`Add task to ${col.title}`}
                   >
                     <Plus className="w-4 h-4" />
@@ -241,15 +240,15 @@ export const KanbanBoardPage = () => {
                 {/* Column Task Cards */}
                 <div className="flex-1 space-y-3 overflow-y-auto pr-1">
                   {columnTasks.length === 0 ? (
-                    <div className="h-36 flex flex-col items-center justify-center border border-dashed border-[#263449]/70 rounded-xl text-center p-4">
-                      <p className="text-xs text-[#64748B]">No tasks in this lane</p>
+                    <div className="h-36 flex flex-col items-center justify-center border border-dashed border-[#CBD5E1] rounded-xl text-center p-4 bg-white/40">
+                      <p className="text-xs text-[#68758B] font-medium">No tasks in this lane</p>
                       <button
                         onClick={() => {
                           setSelectedTask(null);
                           setTargetColumnForNewTask(col.id);
                           setIsTaskModalOpen(true);
                         }}
-                        className="text-xs text-[#8B5CF6] hover:underline mt-1 font-medium"
+                        className="text-xs text-[#5B5FEF] hover:text-[#484BD1] hover:underline mt-1 font-semibold"
                       >
                         + Add a task
                       </button>

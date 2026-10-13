@@ -26,26 +26,26 @@ export const Modal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 font-sans">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#0B1020]/80 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#202B42]/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Dialog */}
       <div
-        className={`relative w-full ${maxWidth} bg-[#111B30] border border-[#263449] rounded-2xl shadow-2xl p-6 overflow-hidden z-10 transition-all transform animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col`}
+        className={`relative w-full ${maxWidth} bg-white border border-[#E5EAF2] rounded-2xl shadow-2xl p-6 sm:p-7 overflow-hidden z-10 transition-all transform animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] flex flex-col text-[#202B42]`}
       >
         {/* Header */}
-        <div className="flex items-start justify-between pb-4 border-b border-[#263449]">
+        <div className="flex items-start justify-between pb-4 border-b border-[#E5EAF2]">
           <div>
-            <h3 className="text-lg font-semibold text-[#F8FAFC]">{title}</h3>
-            {subtitle && <p className="text-xs text-[#94A3B8] mt-0.5">{subtitle}</p>}
+            <h3 className="text-lg sm:text-xl font-bold text-[#202B42] tracking-tight">{title}</h3>
+            {subtitle && <p className="text-xs sm:text-sm text-[#68758B] mt-1 font-medium">{subtitle}</p>}
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#17233B] transition-colors"
+            className="p-1.5 rounded-xl text-[#68758B] hover:text-[#202B42] hover:bg-[#F7F9FC] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

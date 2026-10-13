@@ -63,19 +63,19 @@ export const NotificationsPage = () => {
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
+    <div className="space-y-6 max-w-4xl mx-auto font-sans">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#263449]/50">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#E5EAF2]">
         <div>
-          <div className="flex items-center gap-2">
-            <h2 className="text-2xl font-bold tracking-tight text-[#F8FAFC]">Notifications</h2>
+          <div className="flex items-center gap-3">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202B42]">Notifications</h2>
             {unreadCount > 0 && (
-              <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-[#22D3EE] font-bold border border-cyan-500/30">
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F0EFFF] text-[#5B5FEF] font-bold border border-[#E4E2FF]">
                 {unreadCount} unread
               </span>
             )}
           </div>
-          <p className="text-sm text-[#94A3B8] mt-1">
+          <p className="text-sm text-[#68758B] mt-1 font-normal">
             Stay informed on task updates, assignments, and critical deadline alerts.
           </p>
         </div>
@@ -107,26 +107,28 @@ export const NotificationsPage = () => {
             <Card
               key={n._id}
               className={`flex items-start justify-between gap-4 transition-all ${
-                !n.read ? 'border-[#8B5CF6]/50 bg-[#17233B]/40' : 'bg-[#111B30]'
+                !n.read
+                  ? 'border-[#E4E2FF] bg-[#FAFCFF] shadow-sm'
+                  : 'bg-white border-[#E5EAF2]'
               }`}
             >
-              <div className="flex items-start gap-3 min-w-0">
-                <div className={`p-2 rounded-xl mt-0.5 ${
+              <div className="flex items-start gap-3.5 min-w-0">
+                <div className={`p-2.5 rounded-xl mt-0.5 shadow-subtle shrink-0 ${
                   !n.read
-                    ? 'bg-purple-500/20 text-[#8B5CF6] border border-purple-500/30'
-                    : 'bg-[#17233B] text-[#94A3B8] border border-[#263449]'
+                    ? 'bg-[#F0EFFF] text-[#5B5FEF] border border-[#E4E2FF]'
+                    : 'bg-[#F7F9FC] text-[#96A0B2] border border-[#E5EAF2]'
                 }`}>
                   <Bell className="w-4 h-4" />
                 </div>
                 <div className="space-y-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <h4 className="text-sm font-semibold text-[#F8FAFC] truncate">{n.title}</h4>
+                    <h4 className="text-sm font-bold text-[#202B42] truncate">{n.title}</h4>
                     {!n.read && (
-                      <span className="w-2 h-2 rounded-full bg-[#22D3EE] shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-[#5B5FEF] shrink-0" />
                     )}
                   </div>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed">{n.message}</p>
-                  <p className="text-[10px] text-[#64748B]">
+                  <p className="text-xs text-[#68758B] leading-relaxed font-normal">{n.message}</p>
+                  <p className="text-[10px] text-[#96A0B2] font-medium">
                     {new Date(n.createdAt).toLocaleString('en-US', {
                       month: 'short',
                       day: 'numeric',
@@ -140,7 +142,7 @@ export const NotificationsPage = () => {
               {!n.read && (
                 <button
                   onClick={() => handleMarkAsRead(n._id)}
-                  className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#34D399] hover:bg-emerald-500/10 shrink-0"
+                  className="p-1.5 rounded-lg text-[#68758B] hover:text-[#16A675] hover:bg-emerald-50 transition-colors shrink-0"
                   title="Mark as read"
                 >
                   <Check className="w-4 h-4" />

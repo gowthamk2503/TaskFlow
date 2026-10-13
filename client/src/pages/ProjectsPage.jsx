@@ -90,12 +90,12 @@ export const ProjectsPage = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans">
       {/* Header & Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#263449]/50">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#E5EAF2]">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-[#F8FAFC]">Projects</h2>
-          <p className="text-sm text-[#94A3B8] mt-1">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202B42]">Projects</h2>
+          <p className="text-sm text-[#68758B] mt-1 font-normal">
             Manage your workspace initiatives, roadmaps, and progress milestones.
           </p>
         </div>
@@ -114,44 +114,44 @@ export const ProjectsPage = () => {
       {/* Filter and Search Bar */}
       <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
         <form onSubmit={handleSearchSubmit} className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-[#64748B] absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#96A0B2] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search projects by name..."
-            className="w-full bg-[#111B30] border border-[#263449] rounded-xl pl-9 pr-4 py-2 text-sm text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#8B5CF6]"
+            className="w-full bg-white border border-[#E5EAF2] rounded-xl pl-10 pr-4 py-2 text-sm text-[#202B42] placeholder-[#96A0B2] focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 shadow-subtle font-medium"
           />
         </form>
 
         <div className="flex items-center gap-3">
           {/* Status filter */}
-          <div className="flex items-center gap-1.5 bg-[#111B30] border border-[#263449] rounded-xl px-3 py-1.5 text-xs text-[#94A3B8]">
-            <Filter className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-2 bg-white border border-[#E5EAF2] rounded-xl px-3 py-1.5 text-xs text-[#68758B] shadow-subtle">
+            <Filter className="w-3.5 h-3.5 text-[#96A0B2]" />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-transparent text-[#F8FAFC] focus:outline-none cursor-pointer"
+              className="bg-transparent text-[#202B42] font-semibold focus:outline-none cursor-pointer"
             >
-              <option value="all" className="bg-[#111B30]">All Statuses</option>
-              <option value="active" className="bg-[#111B30]">Active</option>
-              <option value="planning" className="bg-[#111B30]">Planning</option>
-              <option value="on_hold" className="bg-[#111B30]">On Hold</option>
-              <option value="completed" className="bg-[#111B30]">Completed</option>
+              <option value="all">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="planning">Planning</option>
+              <option value="on_hold">On Hold</option>
+              <option value="completed">Completed</option>
             </select>
           </div>
 
           {/* Sort selector */}
-          <div className="flex items-center gap-1.5 bg-[#111B30] border border-[#263449] rounded-xl px-3 py-1.5 text-xs text-[#94A3B8]">
+          <div className="flex items-center gap-2 bg-white border border-[#E5EAF2] rounded-xl px-3 py-1.5 text-xs text-[#68758B] shadow-subtle">
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-transparent text-[#F8FAFC] focus:outline-none cursor-pointer"
+              className="bg-transparent text-[#202B42] font-semibold focus:outline-none cursor-pointer"
             >
-              <option value="-createdAt" className="bg-[#111B30]">Newest First</option>
-              <option value="createdAt" className="bg-[#111B30]">Oldest First</option>
-              <option value="name" className="bg-[#111B30]">Alphabetical</option>
-              <option value="dueDate" className="bg-[#111B30]">Due Date</option>
+              <option value="-createdAt">Newest First</option>
+              <option value="createdAt">Oldest First</option>
+              <option value="name">Alphabetical</option>
+              <option value="dueDate">Due Date</option>
             </select>
           </div>
         </div>
@@ -189,9 +189,9 @@ export const ProjectsPage = () => {
                     <div className="flex items-center gap-2.5 truncate">
                       <span
                         className="w-3.5 h-3.5 rounded-md shrink-0 shadow-sm"
-                        style={{ backgroundColor: project.color || '#8B5CF6' }}
+                        style={{ backgroundColor: project.color || '#5B5FEF' }}
                       />
-                      <h3 className="text-base font-semibold text-[#F8FAFC] group-hover:text-[#22D3EE] transition-colors truncate">
+                      <h3 className="text-base font-semibold text-[#202B42] group-hover:text-[#5B5FEF] transition-colors truncate">
                         {project.name}
                       </h3>
                     </div>
@@ -201,30 +201,30 @@ export const ProjectsPage = () => {
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-[#94A3B8] line-clamp-2 mb-4 min-h-[2rem]">
+                  <p className="text-xs text-[#68758B] line-clamp-2 mb-4 min-h-[2rem] leading-relaxed font-normal">
                     {project.description || 'No description provided.'}
                   </p>
                 </div>
 
                 {/* Progress bar and details */}
-                <div className="space-y-4 pt-3 border-t border-[#263449]/70">
+                <div className="space-y-4 pt-3.5 border-t border-[#E5EAF2]">
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-xs text-[#94A3B8]">
-                      <span>{project.completedTasks} / {project.totalTasks} Tasks</span>
-                      <span className="font-semibold text-[#F8FAFC]">{project.progress}%</span>
+                    <div className="flex items-center justify-between text-xs text-[#68758B]">
+                      <span className="font-medium">{project.completedTasks} / {project.totalTasks} Tasks</span>
+                      <span className="font-bold text-[#202B42]">{project.progress}%</span>
                     </div>
-                    <div className="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden border border-[#263449]/40">
+                    <div className="w-full h-2 bg-[#F7F9FC] rounded-full overflow-hidden border border-[#E5EAF2]">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#22D3EE] transition-all duration-300"
+                        className="h-full rounded-full bg-[#5B5FEF] transition-all duration-300"
                         style={{ width: `${project.progress}%` }}
                       />
                     </div>
                   </div>
 
                   {/* Bottom metadata & Quick buttons */}
-                  <div className="flex items-center justify-between text-xs text-[#94A3B8] pt-1">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" />
+                  <div className="flex items-center justify-between text-xs text-[#68758B] pt-1">
+                    <div className="flex items-center gap-1.5 font-medium">
+                      <Calendar className="w-3.5 h-3.5 text-[#96A0B2]" />
                       <span>
                         {project.dueDate
                           ? new Date(project.dueDate).toLocaleDateString('en-US', {
@@ -238,14 +238,14 @@ export const ProjectsPage = () => {
                     <div className="flex items-center gap-1">
                       <button
                         onClick={(e) => handleOpenEdit(project, e)}
-                        className="p-1.5 rounded-lg hover:text-[#8B5CF6] hover:bg-[#17233B] transition-colors"
+                        className="p-1.5 rounded-lg text-[#68758B] hover:text-[#5B5FEF] hover:bg-[#F0EFFF] transition-colors"
                         title="Edit project"
                       >
                         <Edit className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={(e) => handleOpenDelete(project, e)}
-                        className="p-1.5 rounded-lg hover:text-[#FB7185] hover:bg-rose-500/10 transition-colors"
+                        className="p-1.5 rounded-lg text-[#68758B] hover:text-[#DC5265] hover:bg-rose-50 transition-colors"
                         title="Delete project"
                       >
                         <Trash2 className="w-3.5 h-3.5" />

@@ -21,10 +21,10 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0B1020] flex items-center justify-center">
+      <div className="min-h-screen bg-[#F7F9FC] flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-2 border-[#8B5CF6] border-t-transparent rounded-full animate-spin" />
-          <span className="text-xs text-[#94A3B8] font-medium tracking-wider uppercase">Loading TaskFlow...</span>
+          <div className="w-8 h-8 border-2 border-[#5B5FEF] border-t-transparent rounded-full animate-spin" />
+          <span className="text-xs text-[#68758B] font-medium tracking-wider uppercase">Loading TaskFlow...</span>
         </div>
       </div>
     );
@@ -88,29 +88,31 @@ export const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 
-        {/* Global Toast Provider with Midnight Aurora Palette */}
+        {/* Global Toast Provider with Friendly Light Palette */}
         <Toaster
           position="bottom-right"
           toastOptions={{
             duration: 3500,
             style: {
-              background: '#111B30',
-              color: '#F8FAFC',
-              border: '1px solid #263449',
+              background: '#FFFFFF',
+              color: '#202B42',
+              border: '1px solid #E5EAF2',
               borderRadius: '12px',
               fontSize: '13px',
-              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
+              fontWeight: 500,
+              boxShadow: '0 8px 30px rgba(32, 43, 66, 0.08)',
+              fontFamily: '"Plus Jakarta Sans", Inter, sans-serif',
             },
             success: {
               iconTheme: {
-                primary: '#34D399',
-                secondary: '#111B30',
+                primary: '#16A675',
+                secondary: '#FFFFFF',
               },
             },
             error: {
               iconTheme: {
-                primary: '#FB7185',
-                secondary: '#111B30',
+                primary: '#DC5265',
+                secondary: '#FFFFFF',
               },
             },
           }}

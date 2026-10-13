@@ -11,10 +11,10 @@ export const Card = ({
   return (
     <div
       onClick={onClick}
-      className={`bg-[#111B30] border border-[#263449] rounded-xl p-5 transition-all duration-200 ${
-        hoverEffect ? 'hover:border-[#384c6c] hover:bg-[#14203a] hover:shadow-card cursor-pointer' : ''
+      className={`bg-white border border-[#E5EAF2] rounded-2xl p-5 sm:p-6 transition-all duration-200 shadow-card ${
+        hoverEffect ? 'hover:border-[#D1D8E2] hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer' : ''
       } ${
-        glow ? 'shadow-glow-violet border-purple-500/40' : ''
+        glow ? 'border-[#E4E2FF] ring-2 ring-[#5B5FEF]/15' : ''
       } ${className}`}
       {...props}
     >

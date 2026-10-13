@@ -7,28 +7,56 @@ export default {
   theme: {
     extend: {
       colors: {
-        aurora: {
-          bg: '#0B1020',
-          sidebar: '#0F172A',
-          card: '#111B30',
-          surface: '#17233B',
-          border: '#263449',
-          violet: '#8B5CF6',
-          cyan: '#22D3EE',
-          text: '#F8FAFC',
-          muted: '#94A3B8',
-          success: '#34D399',
-          warning: '#FBBF24',
-          error: '#FB7185',
+        brand: {
+          DEFAULT: '#5B5FEF',
+          hover: '#484BD1',
+          light: '#F0EFFF',
+          50: '#F0EFFF',
+          100: '#E4E2FF',
+          500: '#5B5FEF',
+          600: '#484BD1',
+          700: '#383AB8',
+        },
+        surface: {
+          DEFAULT: '#FFFFFF',
+          page: '#F7F9FC',
+          sub: '#F7F9FC',
+          muted: '#F1F4F9',
+          border: '#E5EAF2',
+        },
+        ink: {
+          primary: '#202B42',
+          secondary: '#68758B',
+          muted: '#96A0B2',
+        },
+        pastel: {
+          lavender: '#F0EFFF',
+          blue: '#EAF2FF',
+          green: '#E5F7EE',
+          orange: '#FFF1E5',
+        },
+        status: {
+          success: '#16A675',
+          warning: '#D99118',
+          error: '#DC5265',
+          info: '#3984E8',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       boxShadow: {
-        'glow-violet': '0 0 25px -5px rgba(139, 92, 246, 0.3)',
-        'glow-cyan': '0 0 25px -5px rgba(34, 211, 238, 0.3)',
-        'card': '0 8px 30px rgba(0, 0, 0, 0.4)',
+        'subtle': '0 1px 3px 0 rgba(32, 43, 66, 0.04), 0 1px 2px 0 rgba(32, 43, 66, 0.02)',
+        'card': '0 1px 3px 0 rgba(32, 43, 66, 0.04), 0 4px 12px 0 rgba(32, 43, 66, 0.03)',
+        'card-hover': '0 6px 16px -2px rgba(32, 43, 66, 0.07), 0 2px 6px -1px rgba(32, 43, 66, 0.04)',
+        'dropdown': '0 10px 25px -5px rgba(32, 43, 66, 0.1), 0 8px 10px -6px rgba(32, 43, 66, 0.05)',
+      },
+      borderRadius: {
+        'card': '14px',
+        'control': '9px',
+      },
+      height: {
+        'navbar': '72px',
       },
     },
   },

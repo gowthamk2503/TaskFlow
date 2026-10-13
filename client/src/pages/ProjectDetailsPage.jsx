@@ -138,7 +138,12 @@ export const ProjectDetailsPage = () => {
   };
 
   if (loading) {
-    return <LoadingSkeleton count={4} type="card" />;
+    return (
+      <div className="space-y-6">
+        <div className="h-6 bg-white border border-[#E5EAF2] rounded-lg w-28 animate-pulse" />
+        <LoadingSkeleton count={4} type="card" />
+      </div>
+    );
   }
 
   if (!project) return null;
@@ -149,12 +154,12 @@ export const ProjectDetailsPage = () => {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans">
       {/* Back button */}
       <div>
         <Link
           to="/projects"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#68758B] hover:text-[#5B5FEF] transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Back to Projects
         </Link>
@@ -162,34 +167,34 @@ export const ProjectDetailsPage = () => {
 
       {/* Project Banner & Information Card */}
       <Card className="relative overflow-hidden">
-        {/* Glow accent */}
+        {/* Soft pastel ambient glow */}
         <div
-          className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl opacity-20 pointer-events-none"
-          style={{ backgroundColor: project.color || '#8B5CF6' }}
+          className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl opacity-15 pointer-events-none"
+          style={{ backgroundColor: project.color || '#5B5FEF' }}
         />
 
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 relative z-10">
           <div className="space-y-2 max-w-2xl">
             <div className="flex flex-wrap items-center gap-3">
               <span
-                className="w-3.5 h-3.5 rounded-md"
-                style={{ backgroundColor: project.color || '#8B5CF6' }}
+                className="w-4 h-4 rounded-md shadow-sm"
+                style={{ backgroundColor: project.color || '#5B5FEF' }}
               />
-              <h2 className="text-2xl font-bold text-[#F8FAFC]">{project.name}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#202B42]">{project.name}</h2>
               <Badge variant={project.status}>{project.status}</Badge>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#17233B] text-[#94A3B8] border border-[#263449]">
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F0EFFF] text-[#5B5FEF] font-semibold border border-[#E4E2FF]">
                 {project.category || 'General'}
               </span>
             </div>
 
-            <p className="text-sm text-[#94A3B8] leading-relaxed">
+            <p className="text-sm text-[#68758B] leading-relaxed font-normal">
               {project.description || 'No description provided for this project.'}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-[#94A3B8]">
+            <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-[#68758B]">
               {project.dueDate && (
-                <div className="flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-[#22D3EE]" />
+                <div className="flex items-center gap-1.5 font-medium">
+                  <Calendar className="w-3.5 h-3.5 text-[#3984E8]" />
                   <span>
                     Due: {new Date(project.dueDate).toLocaleDateString('en-US', {
                       month: 'short',
@@ -201,8 +206,8 @@ export const ProjectDetailsPage = () => {
               )}
               {project.owner && (
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[#64748B]">Lead:</span>
-                  <span className="text-[#F8FAFC] font-medium">{project.owner.name}</span>
+                  <span className="text-[#96A0B2]">Lead:</span>
+                  <span className="text-[#202B42] font-semibold">{project.owner.name}</span>
                 </div>
               )}
             </div>
@@ -230,17 +235,17 @@ export const ProjectDetailsPage = () => {
         </div>
 
         {/* Project Progress & Metrics Bar */}
-        <div className="mt-6 pt-6 border-t border-[#263449]/70 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="mt-6 pt-6 border-t border-[#E5EAF2] grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
           <div className="sm:col-span-2 space-y-1.5">
-            <div className="flex justify-between text-xs text-[#94A3B8]">
-              <span>Completion Rate</span>
-              <span className="font-semibold text-[#F8FAFC]">
+            <div className="flex justify-between text-xs text-[#68758B]">
+              <span className="font-medium">Completion Rate</span>
+              <span className="font-bold text-[#202B42]">
                 {project.completedTasks} of {project.totalTasks} Tasks ({project.progress}%)
               </span>
             </div>
-            <div className="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden border border-[#263449]">
+            <div className="w-full h-2.5 bg-[#F7F9FC] rounded-full overflow-hidden border border-[#E5EAF2]">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#22D3EE] transition-all duration-300"
+                className="h-full rounded-full bg-[#5B5FEF] transition-all duration-300"
                 style={{ width: `${project.progress}%` }}
               />
             </div>
@@ -253,7 +258,7 @@ export const ProjectDetailsPage = () => {
                 <div
                   key={idx}
                   title={m.user?.name}
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-[#111B30] bg-[#17233B] text-xs font-semibold text-center leading-8 uppercase text-[#22D3EE]"
+                  className="inline-block h-8 w-8 rounded-full ring-2 ring-white bg-[#F0EFFF] text-xs font-bold text-center leading-8 uppercase text-[#5B5FEF] border border-[#E4E2FF] shadow-subtle"
                 >
                   {m.user?.name ? m.user.name.slice(0, 2) : 'U'}
                 </div>
@@ -275,8 +280,8 @@ export const ProjectDetailsPage = () => {
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <h3 className="text-lg font-bold text-[#F8FAFC]">Project Tasks</h3>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-[#17233B] text-[#8B5CF6] font-semibold border border-[#263449]">
+            <h3 className="text-lg font-bold text-[#202B42]">Project Tasks</h3>
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F0EFFF] text-[#5B5FEF] font-bold border border-[#E4E2FF]">
               {filteredTasks.length}
             </span>
           </div>
@@ -286,7 +291,7 @@ export const ProjectDetailsPage = () => {
             <select
               value={taskFilter}
               onChange={(e) => setTaskFilter(e.target.value)}
-              className="bg-[#111B30] border border-[#263449] rounded-xl px-3 py-1.5 text-xs text-[#F8FAFC] focus:outline-none"
+              className="bg-white border border-[#E5EAF2] rounded-xl px-3 py-1.5 text-xs text-[#202B42] font-semibold focus:outline-none shadow-subtle cursor-pointer"
             >
               <option value="all">All Tasks</option>
               <option value="todo">To Do</option>
@@ -378,32 +383,32 @@ export const ProjectDetailsPage = () => {
         <div className="space-y-4">
           {/* Current Members */}
           <div>
-            <h4 className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wider mb-2">
+            <h4 className="text-xs font-bold text-[#68758B] uppercase tracking-wider mb-2">
               Current Members ({project.members?.length || 0})
             </h4>
             <div className="space-y-2 max-h-40 overflow-y-auto pr-1">
               {project.members?.map((m) => (
                 <div
                   key={m.user?._id || m.user}
-                  className="flex items-center justify-between p-2.5 rounded-lg bg-[#0F172A] border border-[#263449] text-xs"
+                  className="flex items-center justify-between p-2.5 rounded-xl bg-[#F7F9FC] border border-[#E5EAF2] text-xs"
                 >
-                  <div className="flex items-center gap-2 truncate">
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-r from-[#8B5CF6] to-[#22D3EE] flex items-center justify-center font-bold text-white text-[10px]">
+                  <div className="flex items-center gap-2.5 truncate">
+                    <div className="w-7 h-7 rounded-full bg-[#F0EFFF] text-[#5B5FEF] border border-[#E4E2FF] flex items-center justify-center font-bold text-[10px]">
                       {m.user?.name ? m.user.name.slice(0, 2) : 'U'}
                     </div>
                     <div className="truncate">
-                      <p className="font-semibold text-[#F8FAFC] truncate">{m.user?.name}</p>
-                      <p className="text-[10px] text-[#64748B] truncate">{m.user?.email}</p>
+                      <p className="font-bold text-[#202B42] truncate">{m.user?.name}</p>
+                      <p className="text-[10px] text-[#68758B] truncate">{m.user?.email}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] uppercase font-bold text-[#8B5CF6] bg-purple-500/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] uppercase font-bold text-[#5B5FEF] bg-[#F0EFFF] px-2 py-0.5 rounded border border-[#E4E2FF]">
                       {m.role || 'member'}
                     </span>
                     {project.owner?._id !== m.user?._id && (
                       <button
                         onClick={() => handleRemoveMember(m.user?._id)}
-                        className="text-[#FB7185] hover:opacity-80 p-1"
+                        className="text-[#68758B] hover:text-[#DC5265] p-1 transition-colors"
                         title="Remove member"
                       >
                         <X className="w-3.5 h-3.5" />
@@ -416,8 +421,8 @@ export const ProjectDetailsPage = () => {
           </div>
 
           {/* Search & Add New Member */}
-          <div className="pt-4 border-t border-[#263449]">
-            <h4 className="text-xs font-semibold text-[#94A3B8] uppercase tracking-wider mb-2">
+          <div className="pt-4 border-t border-[#E5EAF2]">
+            <h4 className="text-xs font-bold text-[#68758B] uppercase tracking-wider mb-2">
               Add New Member
             </h4>
             <form onSubmit={handleSearchUsers} className="flex gap-2 mb-3">
@@ -426,7 +431,7 @@ export const ProjectDetailsPage = () => {
                 value={memberSearchQuery}
                 onChange={(e) => setMemberSearchQuery(e.target.value)}
                 placeholder="Search user by name or email..."
-                className="flex-1 bg-[#0F172A] border border-[#263449] rounded-lg px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]"
+                className="flex-1 bg-white border border-[#E5EAF2] rounded-xl px-3.5 py-2 text-xs text-[#202B42] placeholder-[#96A0B2] focus:outline-none focus:border-[#5B5FEF] shadow-subtle font-medium"
               />
               <Button type="submit" size="sm" variant="secondary" icon={Search}>
                 Find
@@ -434,7 +439,7 @@ export const ProjectDetailsPage = () => {
             </form>
 
             {memberSearchResults.length > 0 && (
-              <div className="space-y-1.5 border border-[#263449] rounded-lg p-2 bg-[#0F172A] max-h-36 overflow-y-auto">
+              <div className="space-y-1.5 border border-[#E5EAF2] rounded-xl p-2 bg-white max-h-36 overflow-y-auto shadow-subtle">
                 {memberSearchResults.map((u) => {
                   const isAlreadyMember = project.members?.some(
                     (m) => (m.user?._id || m.user) === u._id
@@ -442,18 +447,18 @@ export const ProjectDetailsPage = () => {
                   return (
                     <div
                       key={u._id}
-                      className="flex items-center justify-between p-2 rounded hover:bg-[#17233B] text-xs"
+                      className="flex items-center justify-between p-2 rounded-lg hover:bg-[#F7F9FC] text-xs"
                     >
                       <div className="truncate">
-                        <span className="text-[#F8FAFC] font-medium">{u.name}</span>
-                        <span className="text-[10px] text-[#64748B] ml-2">{u.email}</span>
+                        <span className="text-[#202B42] font-semibold">{u.name}</span>
+                        <span className="text-[10px] text-[#68758B] ml-2">{u.email}</span>
                       </div>
                       {isAlreadyMember ? (
-                        <span className="text-[10px] text-[#64748B]">Already added</span>
+                        <span className="text-[10px] text-[#96A0B2] font-medium">Already added</span>
                       ) : (
                         <Button
                           size="sm"
-                          variant="cyan"
+                          variant="secondary"
                           onClick={() => handleAddMember(u._id)}
                           isLoading={isAddingMember}
                         >

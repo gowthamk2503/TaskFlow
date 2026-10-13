@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Layers, User, Mail, Lock, ArrowRight } from 'lucide-react';
+import { User, Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
+import { TaskFlowLogo } from '../components/common/TaskFlowLogo';
 import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
 
@@ -13,6 +14,8 @@ export const RegisterPage = () => {
     password: '',
     confirmPassword: '',
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { register } = useAuth();
@@ -60,21 +63,21 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1020] flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background Decorative Aurora Glows */}
-      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-[#8B5CF6]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-[#22D3EE]/20 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen bg-[#F7F9FC] flex items-center justify-center p-4 relative overflow-hidden font-sans">
+      {/* Subtle pastel ambient background blurs */}
+      <div className="absolute top-1/4 -right-20 w-80 h-80 bg-[#F0EFFF] rounded-full blur-3xl pointer-events-none opacity-80" />
+      <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-[#EAF2FF] rounded-full blur-3xl pointer-events-none opacity-80" />
 
-      <div className="w-full max-w-md bg-[#111B30] border border-[#263449] rounded-2xl shadow-2xl p-8 relative z-10">
-        <div className="text-center mb-6">
-          <div className="inline-flex p-3 rounded-2xl bg-gradient-to-tr from-[#8B5CF6] to-[#22D3EE] text-white shadow-lg shadow-purple-500/25 mb-3">
-            <Layers className="w-7 h-7" />
+      <div className="w-full max-w-md bg-white border border-[#E5EAF2] rounded-2xl shadow-card p-8 relative z-10">
+        <div className="flex flex-col items-center text-center mb-6">
+          <div className="mb-4">
+            <TaskFlowLogo size="lg" to="/register" showBadge={true} />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#F8FAFC]">
-            Create your account
+          <h1 className="text-2xl font-bold tracking-tight text-[#202B42]">
+            Create your workspace
           </h1>
-          <p className="text-sm text-[#94A3B8] mt-1">
-            Get started with TaskFlow in seconds
+          <p className="text-sm text-[#68758B] mt-1.5 font-normal">
+            Get started with TaskFlow in seconds.
           </p>
         </div>
 
@@ -102,29 +105,49 @@ export const RegisterPage = () => {
             error={errors.email}
           />
 
-          <Input
-            label="Password"
-            type="password"
-            name="password"
-            icon={Lock}
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="••••••••"
-            required
-            error={errors.password}
-          />
+          <div className="relative">
+            <Input
+              label="Password"
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              icon={Lock}
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="••••••••"
+              required
+              error={errors.password}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3.5 top-8 text-[#96A0B2] hover:text-[#202B42] transition-colors p-1"
+              title={showPassword ? 'Hide password' : 'Show password'}
+            >
+              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
+          </div>
 
-          <Input
-            label="Confirm Password"
-            type="password"
-            name="confirmPassword"
-            icon={Lock}
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            placeholder="••••••••"
-            required
-            error={errors.confirmPassword}
-          />
+          <div className="relative">
+            <Input
+              label="Confirm Password"
+              type={showConfirmPassword ? 'text' : 'password'}
+              name="confirmPassword"
+              icon={Lock}
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="••••••••"
+              required
+              error={errors.confirmPassword}
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-3.5 top-8 text-[#96A0B2] hover:text-[#202B42] transition-colors p-1"
+              title={showConfirmPassword ? 'Hide password' : 'Show password'}
+            >
+              {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
+          </div>
 
           <Button
             type="submit"
@@ -134,13 +157,13 @@ export const RegisterPage = () => {
             isLoading={isLoading}
             icon={ArrowRight}
           >
-            Create Account
+            Create Workspace Account
           </Button>
         </form>
 
-        <div className="mt-6 text-center text-xs text-[#94A3B8]">
+        <div className="mt-6 text-center text-xs text-[#68758B] font-medium">
           Already have an account?{' '}
-          <Link to="/login" className="text-[#8B5CF6] hover:text-[#22D3EE] font-semibold">
+          <Link to="/login" className="text-[#5B5FEF] hover:text-[#484BD1] font-bold">
             Sign in
           </Link>
         </div>

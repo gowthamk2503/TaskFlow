@@ -84,11 +84,11 @@ export const SettingsPage = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-4xl mx-auto">
+    <div className="space-y-8 max-w-4xl mx-auto font-sans">
       {/* Header */}
-      <div className="pb-2 border-b border-[#263449]/50">
-        <h2 className="text-2xl font-bold tracking-tight text-[#F8FAFC]">Settings</h2>
-        <p className="text-sm text-[#94A3B8] mt-1">
+      <div className="pb-3 border-b border-[#E5EAF2]">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202B42]">Account Settings</h2>
+        <p className="text-sm text-[#68758B] mt-1 font-normal">
           Manage your account credentials, workspace profile, and security preferences.
         </p>
       </div>
@@ -96,13 +96,13 @@ export const SettingsPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Profile Information Card */}
         <Card>
-          <div className="flex items-center gap-3 pb-4 mb-4 border-b border-[#263449]">
-            <div className="p-2.5 rounded-xl bg-purple-500/10 text-[#8B5CF6] border border-purple-500/20">
+          <div className="flex items-center gap-3 pb-4 mb-4 border-b border-[#E5EAF2]">
+            <div className="p-2.5 rounded-xl bg-[#F0EFFF] text-[#5B5FEF] border border-[#E4E2FF] shadow-subtle shrink-0">
               <User className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-semibold text-[#F8FAFC]">Profile Details</h3>
-              <p className="text-xs text-[#94A3B8]">Your identity across projects and team tasks</p>
+              <h3 className="text-base font-semibold text-[#202B42]">Profile Details</h3>
+              <p className="text-xs text-[#68758B]">Your identity across projects and team tasks</p>
             </div>
           </div>
 
@@ -122,13 +122,13 @@ export const SettingsPage = () => {
             />
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-medium text-[#94A3B8]">Bio / Focus</label>
+              <label className="text-xs font-semibold text-[#202B42]">Bio / Focus</label>
               <textarea
                 rows={3}
                 value={profileData.bio}
                 onChange={(e) => setProfileData({ ...profileData, bio: e.target.value })}
                 placeholder="Briefly describe your responsibilities..."
-                className="w-full rounded-lg bg-[#0F172A] border border-[#263449] text-[#F8FAFC] text-sm p-3 focus:outline-none focus:border-[#8B5CF6]"
+                className="w-full rounded-xl bg-white border border-[#E5EAF2] text-[#202B42] placeholder-[#96A0B2] text-sm p-3 focus:outline-none focus:border-[#5B5FEF] focus:ring-2 focus:ring-[#5B5FEF]/15 transition-all shadow-subtle font-medium"
               />
             </div>
 
@@ -140,7 +140,7 @@ export const SettingsPage = () => {
                 isLoading={isUpdatingProfile}
                 className="w-full"
               >
-                Save Profile
+                Save Changes
               </Button>
             </div>
           </form>
@@ -148,13 +148,13 @@ export const SettingsPage = () => {
 
         {/* Change Password Card */}
         <Card>
-          <div className="flex items-center gap-3 pb-4 mb-4 border-b border-[#263449]">
-            <div className="p-2.5 rounded-xl bg-cyan-500/10 text-[#22D3EE] border border-cyan-500/20">
+          <div className="flex items-center gap-3 pb-4 mb-4 border-b border-[#E5EAF2]">
+            <div className="p-2.5 rounded-xl bg-[#EAF2FF] text-[#3984E8] border border-[#BFDBFE] shadow-subtle shrink-0">
               <Shield className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-semibold text-[#F8FAFC]">Security & Password</h3>
-              <p className="text-xs text-[#94A3B8]">Update your account login password</p>
+              <h3 className="text-base font-semibold text-[#202B42]">Security & Password</h3>
+              <p className="text-xs text-[#68758B]">Update your account login password</p>
             </div>
           </div>
 
@@ -208,17 +208,17 @@ export const SettingsPage = () => {
       </div>
 
       {/* System Theme & Session Management */}
-      <Card className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 bg-[#0F172A]">
-        <div className="flex items-center gap-3">
-          <div className="p-3 rounded-xl bg-gradient-to-tr from-[#8B5CF6] to-[#22D3EE] text-white">
+      <Card className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 bg-white border border-[#E5EAF2]">
+        <div className="flex items-center gap-3.5">
+          <div className="p-3 rounded-2xl bg-[#F0EFFF] text-[#5B5FEF] border border-[#E4E2FF] shadow-subtle shrink-0">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-[#F8FAFC]">
-              Design System Theme: Midnight Aurora
+            <h4 className="text-sm font-bold text-[#202B42]">
+              Design System: TaskFlow — Clean Workspace
             </h4>
-            <p className="text-xs text-[#94A3B8]">
-              High-contrast dark mode tailored for deep work productivity and reduced eye strain.
+            <p className="text-xs text-[#68758B] mt-0.5 font-normal">
+              Crisp white surfaces, soft lavender accents, and Plus Jakarta Sans typography engineered for long work sessions.
             </p>
           </div>
         </div>
