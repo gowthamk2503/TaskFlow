@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0B1020;
+  --bg-sidebar: #0F172A;
+  --bg-card: #111B30;
+  --bg-surface: #17233B;
+  --accent-violet: #8B5CF6;
+  --accent-cyan: #22D3EE;
+  --text-primary: #F8FAFC;
+  --text-muted: #94A3B8;
+  --border-color: #263449;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B1020;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #263449;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4e6b;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(17, 27, 48, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(38, 52, 73, 0.8);
+}
+
+.aurora-gradient-text {
+  background: linear-gradient(135deg, #8B5CF6 0%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.aurora-button-gradient {
+  background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+  transition: all 0.2s ease-in-out;
+}
+
+.aurora-button-gradient:hover {
+  opacity: 0.95;
+  box-shadow: 0 0 20px -3px rgba(139, 92, 246, 0.5);
+}
